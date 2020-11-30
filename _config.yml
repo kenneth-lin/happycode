@@ -13,8 +13,8 @@ timezone: ''
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://example.com/child' and root as '/child/'
-url: https://kenneth-lin.github.io
-root: /
+url: https://kenneth-lin.github.io/happycode
+root: /happycode/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -63,7 +63,7 @@ prismjs:
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
   path: ''
-  per_page: 10
+  per_page: 8
   order_by: -date
 
 # Category & Tag
@@ -102,11 +102,3 @@ theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
-deploy:
-  type: git
-  repo: git@github.com:kenneth-lin/kenneth-lin.github.io.git
-  branch: main
-  token: ''
-  message: Update
-  name: kenneth
-  email: kenneth
