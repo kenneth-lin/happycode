@@ -9,7 +9,6 @@ branches:
 script:
   - npm i -g hexo
   - npm i
-  - hexo clean
   - hexo generate # generate static files
 deploy:
   provider: pages
