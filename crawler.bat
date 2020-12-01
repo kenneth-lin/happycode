@@ -27,7 +27,7 @@ set filePath=blog-%yy%%mm%%dd%-%hour%%min%%secs%
 IF [%1] == [] goto paraerror
 node tools/mdpage.js %1 %filePath%
 popd
-exit
+goto :eof
 
 :paraerror
 echo It should defined a link.

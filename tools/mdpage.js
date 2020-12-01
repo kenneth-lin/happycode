@@ -1,8 +1,6 @@
 var TurndownService = require('turndown')
 var turndownPluginGfm = require('turndown-plugin-gfm')
 var gfm = turndownPluginGfm.gfm
-var tables = turndownPluginGfm.tables
-var strikethrough = turndownPluginGfm.strikethrough
 const request = require('request')
 const util = require('util')
 const getPromise = util.promisify(request.get)
@@ -25,12 +23,27 @@ async function httpget(url,file){
     .filter(function() { return this.type === 'comment'; })
     .remove()
     $("script").remove()
-    const body = $('body')
+    const body = domainFilter(url,$)
     var turndownService = new TurndownService()
     turndownService.use(gfm)
-    turndownService.use([tables, strikethrough])    
     var markdown = turndownService.turndown(body.html())
     fs.writeFileSync(file,markdown,{flag:'a'})
+}
+
+function domainFilter(url,dom){
+    var ret = null
+    if(url.indexOf("cnblogs.com") > 0){
+        ret = dom('#cnblogs_post_body')
+    }else if(url.indexOf("stackoverflow.com") > 0){
+        ret = dom('#mainbar')
+    }else if(url.indexOf("blog.csdn.net") > 0){
+        ret = dom('.blog-content-box')
+    }
+    
+    if(ret.html() != null){
+        return ret
+    }
+    return dom('body')
 }
 
 exec(cmd, function(error, stdout, stderr) {
