@@ -25,7 +25,7 @@ goto :eof
 set filePath=blog-%yy%%mm%%dd%-%hour%%min%%secs%
 @REM echo %filePath%
 IF [%1] == [] goto paraerror
-node tools/mdpage.js %1 %filePath%
+node tools/mdpage.js %1 %filePath% %2
 popd
 goto :eof
 

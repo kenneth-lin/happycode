@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
+    "dateformat": "^4.0.0",
     "hexo": "^5.0.0",
     "hexo-admin": "^2.3.0",
     "hexo-deployer-git": "^2.1.0",
