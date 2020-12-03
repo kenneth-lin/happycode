@@ -17,6 +17,10 @@ var title = ""
 if (argvlist.length > 2) {
     title = " \"" + argvlist[2] + "\""
 }
+var defind_content = ""
+if (argvlist.length > 3) {
+    defind_content = argvlist[3]
+}
 const now = dateFormat(new Date(), "yyyy-mm-dd")
 const cmd = 'hexo new --path ' + now + "/" + fileTitle + title
 
@@ -30,20 +34,22 @@ async function httpget(url, file) {
         .filter(function () { return this.type === 'comment'; })
         .remove()
     $("script").remove()
-    const body = domainFilter(url, $)
+    const body = domainFilter(url, $,defind_content)
     var turndownService = new TurndownService()
     turndownService.use(gfm)
     var markdown = turndownService.turndown(body.html())
     markdownArr = markdown.split("\n")
     markdownArr.splice(0, 0, "[This link from: "+url+"](" + url + ")")
-    markdownArr.splice(10, 0, "<!-- more -->")
+    markdownArr.splice(8, 0, "<!-- more -->")
     markdown = markdownArr.join('\n')
     fs.writeFileSync(file, markdown, { flag: 'a' })
 }
 
-function domainFilter(url, dom) {
+function domainFilter(url, dom,content) {
     var ret = null
-    if (url.indexOf("cnblogs.com") > 0) {
+    if(content != ""){
+        ret = dom(content)
+    } else if (url.indexOf("cnblogs.com") > 0) {
         ret = dom('#cnblogs_post_body')
     } else if (url.indexOf("stackoverflow.com") > 0) {
         ret = dom('#mainbar')
