@@ -18,5 +18,4 @@ deploy:
   repo: kenneth-lin/kenneth-lin.github.io
   on:
     branch: main
-  local-dir: public
   target_branch: main
