@@ -39,7 +39,7 @@ async function httpget(url, file) {
     turndownService.use(gfm)
     var markdown = turndownService.turndown(body.html())
     markdownArr = markdown.split("\n")
-    markdownArr.splice(0, 0, "[This link from: "+url+"](" + url + ")")
+    markdownArr.splice(0, 0, "[This link is from: "+url+"](" + url + ")")
     markdownArr.splice(8, 0, "<!-- more -->")
     markdown = markdownArr.join('\n')
     fs.writeFileSync(file, markdown, { flag: 'a' })
@@ -56,6 +56,8 @@ function domainFilter(url, dom,content) {
     } else if (url.indexOf("blog.csdn.net") > 0) {
         ret = dom('.blog-content-box')
     } else if (url.indexOf("npmjs.com") > 0) {
+        ret = dom('article')
+    } else if (url.indexOf("www.jianshu.com") > 0) {
         ret = dom('article')
     }
 

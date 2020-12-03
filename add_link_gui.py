@@ -12,7 +12,7 @@ class AddLink:
     def UI(self):
         root = tk.Tk()
         root.title("Add link tool")
-        root.geometry("515x400")
+        root.geometry("520x400")
         root.bind("<Escape>",self.clearPad)
 
         label=tk.Label(root,text='Title:')
@@ -84,7 +84,7 @@ class AddLink:
         webbrowser.open("http://localhost:4000/")
 
     def openAdmin(self,event):
-        webbrowser.open("http://localhost:4000/happycode/admin")
+        webbrowser.open("http://localhost:4000/admin")
 
 if __name__ == '__main__':
     main = AddLink()
