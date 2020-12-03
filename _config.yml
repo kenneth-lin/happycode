@@ -103,7 +103,6 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 
-
 search:
   path: search.xml
   field: post
