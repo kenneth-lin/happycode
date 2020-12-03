@@ -18,4 +18,4 @@ deploy:
   repo: kenneth-lin/kenneth-lin.github.io
   on:
     branch: main
-  target_branch: main
+  target_branch: gh-pages
