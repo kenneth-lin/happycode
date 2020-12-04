@@ -20,6 +20,23 @@ if (argvlist.length > 2) {
 var defind_content = ""
 if (argvlist.length > 3) {
     defind_content = argvlist[3]
+    if(defind_content == "null"){
+        defind_content = ""
+    }
+}
+var categories = ""
+if (argvlist.length > 4) {
+    categories = argvlist[4]
+    if(categories == "null"){
+        categories = ""
+    }
+}
+var tags = ""
+if (argvlist.length > 5) {
+    tags = argvlist[5]
+    if(tags == "null"){
+        tags = ""
+    }         
 }
 const now = dateFormat(new Date(), "yyyy-mm-dd")
 const cmd = 'hexo new --path ' + now + "/" + fileTitle + title
@@ -42,7 +59,29 @@ async function httpget(url, file) {
     markdownArr.splice(0, 0, "[This link is from: "+url+"](" + url + ")")
     markdownArr.splice(8, 0, "<!-- more -->")
     markdown = markdownArr.join('\n')
+    let filetext = fs.readFileSync(file, 'utf8')
+    filetext = replaceTagsAndCategories(filetext)
+    fs.writeFileSync(file, filetext, 'utf8')
     fs.writeFileSync(file, markdown, { flag: 'a' })
+}
+
+function replaceTagsAndCategories(filetext){
+    if(tags != ""){
+        tagsList = []
+        tagsList.push("tags:")
+        tagsArr = tags.split(" ")
+        tagsArr.forEach((v)=>{
+            tagsList.push("- " + v) 
+        })
+        filetext = filetext.replace("tags:",tagsList.join("\n"))
+    }
+    if(categories != ""){
+        categoriesList = []
+        categoriesList.push("categories:")
+        categoriesList.push("- " + categories)
+        filetext = filetext.replace("categories:",categoriesList.join("\n"))
+    }
+    return filetext
 }
 
 function domainFilter(url, dom,content) {
