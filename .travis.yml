@@ -12,10 +12,10 @@ script:
   - hexo generate # generate static files
 deploy:
   provider: pages
-  skip-cleanup: true
+  skip-cleanup: false
   github-token: $GH_TOKEN
-  keep-history: true
-  repo: kenneth-lin/kenneth-lin.github.io
+  keep-history: false
+  # repo: kenneth-lin/kenneth-lin.github.io
   on:
     branch: main
   local-dir: public
