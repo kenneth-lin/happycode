@@ -93,7 +93,7 @@ function domainFilter(url, dom,content) {
     } else if (url.indexOf("stackoverflow.com") > 0) {
         ret = dom('#mainbar')
     } else if (url.indexOf("blog.csdn.net") > 0) {
-        ret = dom('.blog-content-box')
+        ret = dom('#article_content')
     } else if (url.indexOf("npmjs.com") > 0) {
         ret = dom('article')
     } else if (url.indexOf("www.jianshu.com") > 0) {
